@@ -1,7 +1,3 @@
-
-export class TeacherEditComponent {
-
-}
 import { HttpErrorResponse } from '@angular/common/http';
 import { Component, OnInit } from '@angular/core';
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
