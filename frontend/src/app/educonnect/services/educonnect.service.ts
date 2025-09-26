@@ -18,7 +18,7 @@ export class EduConnectService {
 
   constructor(private http: HttpClient) {}
 
-  // Backend API calls for Student
+  
 
   addStudent(student: Student): Observable<Student> {
     return this.http.post<Student>(`${this.baseUrl}/student`, student);
@@ -40,7 +40,7 @@ export class EduConnectService {
     return this.http.get<any>(`${this.baseUrl}/student/${studentId}`);
   }
 
-  // Backend API calls for Teacher
+  
 
   addTeacher(teacher: Teacher): Observable<Teacher> {
     return this.http.post<Teacher>(`${this.baseUrl}/teacher`, teacher);
@@ -62,7 +62,7 @@ export class EduConnectService {
     return this.http.get<Teacher>(`${this.baseUrl}/teacher/${teacherId}`);
   }
 
-  // Backend API calls for Course
+  
 
   addCourse(course: Course): Observable<Course> {
     return this.http.post<Course>(`${this.baseUrl}/course`, course);
@@ -88,7 +88,7 @@ export class EduConnectService {
       return this.http.get<Course[]>(`${this.baseUrl}/course/teacher/${teacherId}`);
     }
 
-  // Backend API calls for Enrollment
+  
 
   createEnrollment(enrollment: Enrollment): Observable<Enrollment> {
     return this.http.post<Enrollment>(`${this.baseUrl}/enrollment`, enrollment);
@@ -114,7 +114,7 @@ export class EduConnectService {
     return this.http.get<Enrollment[]>(`${this.baseUrl}/enrollment/student/${studentId}`);
   }
 
-  // Backend API calls for User
+  
 
   getUserById(userId: number): Observable<User> {
     return this.http.get<User>(`${this.baseUrl}/user/${userId}`);

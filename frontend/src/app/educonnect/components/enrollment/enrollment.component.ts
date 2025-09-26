@@ -89,7 +89,7 @@ export class EnrollmentComponent implements OnInit {
           this.errorMessage = null;
           this.enrollmentForm.reset();
           if (this.role === 'STUDENT') {
-            // Repopulate the student field and disable it again
+            
             this.enrollmentForm.patchValue({ student: this.student });
             this.enrollmentForm.get('student')?.disable();
           }
@@ -103,10 +103,10 @@ export class EnrollmentComponent implements OnInit {
 
   private handleError(error: HttpErrorResponse): void {
     if (error.error instanceof ErrorEvent) {
-      // Client-side error
+      
       this.errorMessage = ` ${error.error.message}`;
     } else {
-      // Backend error
+      
       this.errorMessage = `${error.error}`;
     }
     this.successMessage = null;

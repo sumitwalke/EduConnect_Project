@@ -5,11 +5,10 @@ export class UserRegistrationDTO {
     fullName: string;
     contactNumber: string;
     email: string;
-    subject?: string; // Only for teachers
-    yearsOfExperience?: number; // Only for teachers
-    dateOfBirth?: Date; // Only for students
-    address?: string; // Only for students
-
+    subject?: string; 
+    yearsOfExperience?: number; 
+    dateOfBirth?: Date; 
+    address?: string; 
     constructor(
         username: string,
         password: string,

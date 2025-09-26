@@ -12,7 +12,7 @@ export class RegistrationComponent {
     registrationForm!: FormGroup;
     successMessage: string | null = null;
     errorMessage: string | null = null;
-    selectedRole: string | null = null; // To track the selected role
+    selectedRole: string | null = null;
 
     constructor(private formBuilder: FormBuilder, private authService: AuthService) { }
 
@@ -24,10 +24,10 @@ export class RegistrationComponent {
             role: ['', [Validators.required]],
             fullName: ['', Validators.required],
             contactNumber: ['', Validators.required],
-            subject: [''], // Teacher-specific field
-            yearsOfExperience: [null], // Teacher-specific field
-            dateOfBirth: [null], // Student-specific field
-            address: [''], // Student-specific field
+            subject: [''],
+            yearsOfExperience: [null],
+            dateOfBirth: [null], 
+            address: [''],
         });
     }
 
@@ -36,7 +36,7 @@ export class RegistrationComponent {
         const role = selectElement.value;
         this.selectedRole = role;
 
-        // Reset unused fields based on the role
+        
         if (role === 'TEACHER') {
             this.registrationForm.patchValue({ dateOfBirth: null, address: '' });
         } else if (role === 'STUDENT') {

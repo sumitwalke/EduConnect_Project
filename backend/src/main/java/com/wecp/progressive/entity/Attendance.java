@@ -45,7 +45,6 @@ public class Attendance {
         this.createdAt = new Date();
     }
 
-    // Getters and Setters
     public int getAttendanceId() {
         return attendanceId;
     }

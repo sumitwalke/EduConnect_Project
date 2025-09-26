@@ -9,7 +9,7 @@ import { EduConnectService } from '../../services/educonnect.service';
   styleUrls: ['./studentcreate.component.scss']
 })
 export class StudentCreateComponent implements OnInit {
-  studentForm!: FormGroup; // Reactive form for the student
+  studentForm!: FormGroup; 
   successMessage: string | null = null;
   errorMessage: string | null = null;
 
@@ -53,10 +53,10 @@ export class StudentCreateComponent implements OnInit {
 
   private handleError(error: HttpErrorResponse): void {
     if (error.error instanceof ErrorEvent) {
-      // Client-side error
+      
       this.errorMessage = ` ${error.error.message}`;
     } else {
-      // Backend error
+      
       this.errorMessage = `${error.error}`;
     }
     this.successMessage = null;

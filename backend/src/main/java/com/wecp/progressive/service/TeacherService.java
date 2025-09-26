@@ -16,14 +16,13 @@ public interface TeacherService {
     default void emptyArrayList() {
     }
 
-    //Do not implement these methods in TeacherServiceImplArraylist.java class
+    
     default public void updateTeacher(Teacher teacher) throws Exception { }
 
     default public void deleteTeacher(int teacherId) throws Exception { }
 
     default Teacher getTeacherById(int teacherId) throws Exception { return null; }
 
-    //Do not implement these methods in TeacherServiceImplArraylist.java and TeacherServiceImplJdbc.java class
-    //Do not implement in TeacherServiceImplJpa.java until Day-13
+    
     default public void modifyTeacherDetails(TeacherDTO teacherDTO) throws Exception { }
 }

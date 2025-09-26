@@ -1,4 +1,4 @@
-/* Container Styles */
+
 .login-form-container {
     display: flex;
     justify-content: center;
@@ -8,7 +8,7 @@
     padding: 20px;
   }
   
-  /* Form Styles */
+
   .login-form {
     max-width: 400px;
     width: 100%;
@@ -27,8 +27,7 @@
     font-weight: bold;
     color: #333;
   }
-  
-  /* Align labels and inputs */
+
   .login-form div {
     display: flex;
     flex-direction: column;
@@ -65,8 +64,7 @@
     font-size: 12px;
     text-align: left;
   }
-  
-  /* Submit Button */
+
   .login-form button[type="submit"] {
     display: block;
     width: 100%;
@@ -84,8 +82,7 @@
   .login-form button[type="submit"]:hover {
     background-color: #45a049;
   }
-  
-  /* Success and Error Messages */
+
   .login-form .success-message,
   .login-form .error-message {
     margin-top: 15px;
@@ -107,7 +104,7 @@
     border: 1px solid #f5c6cb;
   }
   
-  /* Link Styles */
+
   a.task-list {
     display: block;
     margin-top: 20px;

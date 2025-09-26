@@ -33,11 +33,11 @@ public class CourseDAOImpl implements CourseDAO {
             resultSet = statement.getGeneratedKeys();
             if (resultSet.next()) {
                 generatedID = resultSet.getInt(1);
-                course.setCourseId(generatedID); // Set the generated ID back to the course object
+                course.setCourseId(generatedID); 
             }
         } catch (SQLException e) {
             System.err.println("Error adding course: " + e.getMessage());
-            throw e; // Rethrow exception for the calling layer
+            throw e; 
         } finally {
             if (resultSet != null) resultSet.close();
             if (statement != null) statement.close();
@@ -68,13 +68,13 @@ public class CourseDAOImpl implements CourseDAO {
             }
         } catch (SQLException e) {
             System.err.println("Error fetching course by ID: " + e.getMessage());
-            throw e; // Rethrow exception for the calling layer
+            throw e; 
         } finally {
             if (resultSet != null) resultSet.close();
             if (statement != null) statement.close();
             if (connection != null) connection.close();
         }
-        return null; // Return null if no record is found
+        return null; 
     }
 
     @Override
@@ -95,7 +95,7 @@ public class CourseDAOImpl implements CourseDAO {
             statement.executeUpdate();
         } catch (SQLException e) {
             System.err.println("Error updating course: " + e.getMessage());
-            throw e; // Rethrow exception for the calling layer
+            throw e; 
         } finally {
             if (statement != null) statement.close();
             if (connection != null) connection.close();
@@ -116,7 +116,7 @@ public class CourseDAOImpl implements CourseDAO {
             statement.executeUpdate();
         } catch (SQLException e) {
             System.err.println("Error deleting course: " + e.getMessage());
-            throw e; // Rethrow exception for the calling layer
+            throw e; 
         } finally {
             if (statement != null) statement.close();
             if (connection != null) connection.close();
@@ -146,7 +146,7 @@ public class CourseDAOImpl implements CourseDAO {
             }
         } catch (SQLException e) {
             System.err.println("Error fetching all courses: " + e.getMessage());
-            throw e; // Rethrow exception for the calling layer
+            throw e; 
         } finally {
             if (resultSet != null) resultSet.close();
             if (statement != null) statement.close();

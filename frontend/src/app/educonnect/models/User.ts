@@ -6,8 +6,8 @@ export class User {
     username: string;
     password: string;
     role: string;
-    student?: Student; // Optional since it can be null
-    teacher?: Teacher;  // Optional since it can be null
+    student?: Student; 
+    teacher?: Teacher;  
 
     constructor(
         userId: number,

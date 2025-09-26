@@ -45,7 +45,7 @@ public class JwtRequestFilter extends OncePerRequestFilter {
             jwt = authorizationHeader.substring(7);
             try {
                 Claims claims = jwtUtil.extractAllClaims(jwt);
-                userId = (Integer) claims.get("userId"); // Extract userId from token claims
+                userId = (Integer) claims.get("userId"); 
             } catch (ExpiredJwtException | UnsupportedJwtException | MalformedJwtException |
                      SignatureException | IllegalArgumentException e) {
             }

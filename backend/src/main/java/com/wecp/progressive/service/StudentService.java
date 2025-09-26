@@ -16,7 +16,7 @@ public interface StudentService {
     default void emptyArrayList() {
     }
 
-    //Do not implement these methods in StudentServiceImplArraylist.java class
+    
     default void updateStudent(Student student) throws Exception {}
 
     default void deleteStudent(int studentId) throws Exception {}
@@ -25,7 +25,6 @@ public interface StudentService {
         return null;
     }
 
-    //Do not implement these methods in StudentServiceImplArraylist.java and StudentServiceImplJdbc.java class
-    //Do not implement in StudentServiceImplJpa.java until Day-13
+   
     default public void modifyStudentDetails(StudentDTO studentDTO) throws Exception { }
 }

@@ -28,7 +28,7 @@ public class User {
     @JoinColumn(name = "teacher_id")
     private Teacher teacher;
 
-    // Constructors
+
     public User() {
     }
 
@@ -41,7 +41,7 @@ public class User {
         this.teacher = teacher;
     }
 
-    // Getters and Setters
+
     public int getUserId() {
         return userId;
     }

@@ -53,7 +53,7 @@ export class CourseEditComponent implements OnInit {
                 this.teacher = teacher;
                 this.course = course;
     
-                // Now both teacher and course are available before patching the form
+                
                 this.courseForm.patchValue({
                     courseName: this.course.courseName,
                     description: this.course.description,
@@ -87,10 +87,10 @@ export class CourseEditComponent implements OnInit {
 
     private handleError(error: HttpErrorResponse): void {
         if (error.error instanceof ErrorEvent) {
-            // Client-side error
+            
             this.errorMessage = ` ${error.error.message}`;
         } else {
-            // Backend error
+            
             this.errorMessage = `${error.error}`;
         }
         this.successMessage = null;

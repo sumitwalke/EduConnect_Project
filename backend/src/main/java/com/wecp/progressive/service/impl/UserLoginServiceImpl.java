@@ -41,17 +41,17 @@ public class UserLoginServiceImpl implements UserDetailsService {
         String email = userRegistrationDTO.getEmail();
         String username = userRegistrationDTO.getUsername();
 
-        // Validate role
+        
         if (!role.equalsIgnoreCase("STUDENT") && !role.equalsIgnoreCase("TEACHER")) {
             throw new Exception("Invalid role. Only 'STUDENT' or 'TEACHER' allowed.");
         }
 
-        // Check if username already exists
+        
         if (userRepository.findByUsername(username) != null) {
             throw new Exception("Username '" + username + "' already exists.");
         }
 
-        // Check if email already exists
+        
         if (studentRepository.findByEmail(email) != null || teacherRepository.findByEmail(email) != null) {
             throw new Exception("Email '" + email + "' already exists.");
         }

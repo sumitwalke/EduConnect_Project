@@ -26,7 +26,7 @@ public class Enrollment {
     @Column(name = "enrollment_date", nullable = false)
     private Date enrollmentDate;
 
-    // Constructors, Getters, and Setters
+    
     public Enrollment() {}
 
     public Enrollment(Student student, Course course, Date enrollmentDate) {

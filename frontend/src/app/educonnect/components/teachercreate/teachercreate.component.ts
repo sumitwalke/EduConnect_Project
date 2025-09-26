@@ -47,10 +47,10 @@ export class TeacherCreateComponent implements OnInit {
 
   private handleError(error: HttpErrorResponse): void {
     if (error.error instanceof ErrorEvent) {
-      // Client-side error
+    
       this.errorMessage = ` ${error.error.message}`;
     } else {
-      // Backend error
+      
       this.errorMessage = `${error.error}`;
     }
     this.successMessage = null;

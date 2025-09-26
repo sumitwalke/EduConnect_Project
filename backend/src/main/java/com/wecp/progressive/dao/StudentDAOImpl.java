@@ -36,11 +36,11 @@ public class StudentDAOImpl implements StudentDAO {
             resultSet = statement.getGeneratedKeys();
             if (resultSet.next()) {
                 generatedID = resultSet.getInt(1);
-                student.setStudentId(generatedID); // Set the generated ID back to the student object
+                student.setStudentId(generatedID); 
             }
         } catch (SQLException e) {
             System.err.println("Error adding student: " + e.getMessage());
-            throw e; // Rethrow exception for the calling layer
+            throw e; 
         } finally {
             if (resultSet != null) resultSet.close();
             if (statement != null) statement.close();
@@ -73,13 +73,13 @@ public class StudentDAOImpl implements StudentDAO {
             }
         } catch (SQLException e) {
             System.err.println("Error fetching student by ID: " + e.getMessage());
-            throw e; // Rethrow exception for the calling layer
+            throw e; 
         } finally {
             if (resultSet != null) resultSet.close();
             if (statement != null) statement.close();
             if (connection != null) connection.close();
         }
-        return null; // Return null if no record is found
+        return null; 
     }
 
     @Override
@@ -102,7 +102,7 @@ public class StudentDAOImpl implements StudentDAO {
             statement.executeUpdate();
         } catch (SQLException e) {
             System.err.println("Error updating student: " + e.getMessage());
-            throw e; // Rethrow exception for the calling layer
+            throw e; 
         } finally {
             if (statement != null) statement.close();
             if (connection != null) connection.close();
@@ -123,7 +123,7 @@ public class StudentDAOImpl implements StudentDAO {
             statement.executeUpdate();
         } catch (SQLException e) {
             System.err.println("Error deleting student: " + e.getMessage());
-            throw e; // Rethrow exception for the calling layer
+            throw e; 
         } finally {
             if (statement != null) statement.close();
             if (connection != null) connection.close();
@@ -155,7 +155,7 @@ public class StudentDAOImpl implements StudentDAO {
             }
         } catch (SQLException e) {
             System.err.println("Error fetching all students: " + e.getMessage());
-            throw e; // Rethrow exception for the calling layer
+            throw e; 
         } finally {
             if (resultSet != null) resultSet.close();
             if (statement != null) statement.close();
