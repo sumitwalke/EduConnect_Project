@@ -1,4 +1,8 @@
 package com.wecp.progressive.exception;
 
-public class CourseAlreadyExistsException {
+public class CourseAlreadyExistsException extends RuntimeException {
+
+    public CourseAlreadyExistsException(String message) {
+        super(message);
+    }
 }

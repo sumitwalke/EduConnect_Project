@@ -1,23 +1,119 @@
 package com.wecp.progressive.service.impl;
 
 import com.wecp.progressive.dto.UserRegistrationDTO;
+import com.wecp.progressive.entity.Student;
+import com.wecp.progressive.entity.Teacher;
 import com.wecp.progressive.entity.User;
+import com.wecp.progressive.repository.StudentRepository;
+import com.wecp.progressive.repository.TeacherRepository;
+import com.wecp.progressive.repository.UserRepository;
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.security.core.userdetails.UserDetails;
+import org.springframework.security.core.userdetails.UserDetailsService;
+import org.springframework.security.core.userdetails.UsernameNotFoundException;
+import org.springframework.security.crypto.password.PasswordEncoder;
+import org.springframework.stereotype.Service;
 
-public class UserLoginServiceImpl {
+import java.util.Collections;
 
-    User createUser(User user) {
-        return null;
+@Service
+public class UserLoginServiceImpl implements UserDetailsService {
+
+    private final UserRepository userRepository;
+    private final StudentRepository studentRepository;
+    private final TeacherRepository teacherRepository;
+    private final PasswordEncoder passwordEncoder;
+
+    @Autowired
+    public UserLoginServiceImpl(UserRepository userRepository,
+                                StudentRepository studentRepository,
+                                TeacherRepository teacherRepository,
+                                PasswordEncoder passwordEncoder) {
+        this.userRepository = userRepository;
+        this.studentRepository = studentRepository;
+        this.teacherRepository = teacherRepository;
+        this.passwordEncoder = passwordEncoder;
     }
 
-    User getUserByUsername(String username) {
-        return null;
+
+    public void registerUser(UserRegistrationDTO userRegistrationDTO) throws Exception {
+        String role = userRegistrationDTO.getRole();
+        String email = userRegistrationDTO.getEmail();
+        String username = userRegistrationDTO.getUsername();
+
+        // Validate role
+        if (!role.equalsIgnoreCase("STUDENT") && !role.equalsIgnoreCase("TEACHER")) {
+            throw new Exception("Invalid role. Only 'STUDENT' or 'TEACHER' allowed.");
+        }
+
+        // Check if username already exists
+        if (userRepository.findByUsername(username) != null) {
+            throw new Exception("Username '" + username + "' already exists.");
+        }
+
+        // Check if email already exists
+        if (studentRepository.findByEmail(email) != null || teacherRepository.findByEmail(email) != null) {
+            throw new Exception("Email '" + email + "' already exists.");
+        }
+
+        User user = new User();
+        user.setUsername(username);
+        user.setPassword(passwordEncoder.encode(userRegistrationDTO.getPassword()));
+        user.setRole(role.toUpperCase());
+
+        if (role.equalsIgnoreCase("STUDENT")) {
+            Student student = new Student();
+            student.setFullName(userRegistrationDTO.getFullName());
+            student.setDateOfBirth(userRegistrationDTO.getDateOfBirth());
+            student.setEmail(userRegistrationDTO.getEmail());
+            student.setContactNumber(userRegistrationDTO.getContactNumber());
+            student.setAddress(userRegistrationDTO.getAddress());
+
+            Student savedStudent = studentRepository.save(student);
+            user.setStudent(savedStudent);
+
+        } else if (role.equalsIgnoreCase("TEACHER")) {
+            Teacher teacher = new Teacher();
+            teacher.setEmail(userRegistrationDTO.getEmail());
+            teacher.setFullName(userRegistrationDTO.getFullName());
+            teacher.setSubject(userRegistrationDTO.getSubject());
+            teacher.setContactNumber(userRegistrationDTO.getContactNumber());
+            teacher.setYearsOfExperience(userRegistrationDTO.getYearsOfExperience());
+
+            Teacher savedTeacher = teacherRepository.save(teacher);
+            user.setTeacher(savedTeacher);
+        }
+
+        userRepository.save(user);
     }
 
-    void registerUser(UserRegistrationDTO userRegistrationDTO) {
 
+    public User getUserByUsername(String username) {
+        return userRepository.findByUsername(username);
     }
 
-    User getUserDetails(int userId) {
-        return null;
+    public User getUserDetails(int userId) {
+        return userRepository.findById(userId)
+                .orElseThrow(() -> new RuntimeException("User not found with ID: " + userId));
+    }
+
+    @Override
+    public UserDetails loadUserByUsername(String identifier) throws UsernameNotFoundException {
+        User user;
+        if (identifier.matches("\\d+")) {
+            user = userRepository.findById(Integer.parseInt(identifier))
+                    .orElseThrow(() -> new UsernameNotFoundException("User not found with ID: " + identifier));
+        } else {
+            user = userRepository.findByUsername(identifier);
+            if (user == null) {
+                throw new UsernameNotFoundException("User not found with username: " + identifier);
+            }
+        }
+
+        return new org.springframework.security.core.userdetails.User(
+                String.valueOf(user.getUserId()),
+                user.getPassword(),
+                Collections.emptyList()
+        );
     }
 }

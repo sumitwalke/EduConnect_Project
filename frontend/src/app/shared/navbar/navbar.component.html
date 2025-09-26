@@ -1,0 +1,13 @@
+<nav class="navbar">
+    <ul class="navbar-list">
+        <li><a routerLink="/educonnect" class="nav-link app-name">EduConnect</a></li>
+
+        <li *ngIf="role === 'TEACHER'">
+            <a routerLink="/educonnect/course" class="nav-link">Add Course</a>
+        </li>
+        <li><a routerLink="/educonnect/enrollment" class="nav-link">Add Enrollment</a></li>
+    </ul>
+
+    <!-- Logout button component -->
+    <app-logout></app-logout>
+</nav>

@@ -1,4 +1,7 @@
 package com.wecp.progressive.exception;
 
-public class TeacherAlreadyExistsException {
+public class TeacherAlreadyExistsException extends RuntimeException {
+    public TeacherAlreadyExistsException(String message) {
+        super(message);
+    }
 }
